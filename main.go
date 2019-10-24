@@ -7,6 +7,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
+	"time"
 )
 
 var channel string
@@ -33,7 +35,9 @@ func main() {
 			} else if err != nil {
 				log.Fatal(err)
 			}
+			text = strings.TrimSpace(text)
 			client.Say(channel, text)
+			time.Sleep(200 * time.Millisecond)
 		}
 		err := client.Disconnect()
 		if err != nil {
